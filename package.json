@@ -4,6 +4,10 @@
   "description": "Search Open Editors",
   "version": "0.0.3",
   "publisher": "RobertOstermann",
+  "preview": true,
+  "enabledApiProposals": [
+    "tabs"
+  ],
   "icon": "images/logo.png",
   "engines": {
     "vscode": "^1.59.0"

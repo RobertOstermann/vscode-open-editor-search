@@ -14,6 +14,23 @@ Use the Command Palette and search for the command **Search Open Editors**
 
 ![open-editor-search](images/search.png)
 
+## Setup
+
+You must be running an insiders build of VSCode.  
+Package the VSIX and install by running the command `vsce package`
+
+- Install VSCE with `npm install -g vsce`
+- [Publishing Extensions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)
+- [Using Proposed API](https://code.visualstudio.com/api/advanced-topics/using-proposed-api)
+
+Open the command palette and type `Configure Runtime Arguments` to enable proposed apis.
+
+```
+"enable-proposed-api": [
+		"RobertOstermann.open-editor-search"
+	]
+```
+
 ## Extension Settings
 
 | Name                             | Description                                                                       | Default |
