@@ -10,6 +10,8 @@
 
 Search through open editors with an input search bar.
 
+Use the Command Palette and search for the command **Search Open Editors**
+
 ![open-editor-search](images/search.png)
 
 ## Extension Settings
@@ -22,3 +24,8 @@ Search through open editors with an input search bar.
 
 This extension currently cycles through each editor to determine the open editors.  
 VSCode does not currently provide an API to determine which editors are open.
+
+## Credits / Links
+
+- [VSCode's Extension Samples](https://github.com/microsoft/vscode-extension-samples/tree/master/decorator-sample)
+- [All Contributors](../../contributors)

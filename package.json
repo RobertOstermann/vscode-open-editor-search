@@ -2,7 +2,7 @@
   "name": "open-editor-search",
   "displayName": "Open Editor Search",
   "description": "Search Open Editors",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "RobertOstermann",
   "icon": "images/logo.png",
   "engines": {
