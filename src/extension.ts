@@ -51,12 +51,13 @@ export function activate(context: vscode.ExtensionContext) {
 		quickPick.onDidChangeSelection(async (selection) => {
 			if (selection[0]) {
 				const fileName = selection[0].label;
-				// vscode.commands.executeCommand("workbench.action.quickOpen", "FirstEditor.txt");
-				let activeEditor = vscode.window.activeTextEditor;
+				const initialEditor = vscode.window.activeTextEditor;
+				let activeEditor = initialEditor;
 				// eslint-disable-next-line no-useless-escape
 				while (activeEditor.document.fileName.match(/^.*[\\\/](.*\..*)$/)[1] !== fileName) {
 					await vscode.commands.executeCommand("workbench.action.nextEditor");
 					activeEditor = vscode.window.activeTextEditor;
+					if (activeEditor.document.fileName === initialEditor.document.fileName) break;
 				}
 			}
 			quickPick.hide();
