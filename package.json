@@ -1,13 +1,29 @@
 {
-  "name": "open-editor-search",
+  "name": "vscode-open-editor-search",
   "displayName": "Open Editor Search",
   "description": "Search Open Editors",
   "version": "0.0.1",
+  "publisher": "RobertOstermann",
+  "icon": "images/logo.png",
   "engines": {
     "vscode": "^1.59.0"
   },
   "categories": [
     "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RobertOstermann/vscode-open-editor-search"
+  },
+  "homepage": "https://github.com/RobertOstermann/vscode-open-editor-search/blob/master/README.md",
+  "bugs": {
+    "url": "https://github.com/RobertOstermann/vscode-open-editor-search/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "fuzzy",
+    "search",
+    "editor"
   ],
   "activationEvents": [
     "onCommand:open-editor-search.EditorSearch"
@@ -19,7 +35,17 @@
         "command": "open-editor-search.EditorSearch",
         "title": "Search Open Editors"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Open Editor Search Configuration",
+      "properties": {
+        "open-editor-search.fuzzySearch": {
+          "type": "boolean",
+          "default": true,
+          "description": "Should the quick pick search use fuzzy search instead of VSCode's default search."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run -S esbuild-base -- --minify",
@@ -34,12 +60,13 @@
     "esbuild-watch": "npm run -S esbuild-base -- --sourcemap --watch"
   },
   "devDependencies": {
-    "@types/vscode": "^1.59.0",
     "@types/glob": "^7.1.4",
     "@types/mocha": "^9.0.0",
     "@types/node": "14.x",
+    "@types/vscode": "^1.59.0",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
+    "@vscode/test-electron": "^1.6.2",
     "esbuild": "^0.14.24",
     "eslint": "^7.32.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
@@ -47,7 +74,9 @@
     "glob": "^7.1.7",
     "mocha": "^9.1.1",
     "typescript": "^4.4.3",
-    "@vscode/test-electron": "^1.6.2",
     "vscode-dts": "^0.3.3"
+  },
+  "dependencies": {
+    "fuzzysort": "^1.2.1"
   }
 }
