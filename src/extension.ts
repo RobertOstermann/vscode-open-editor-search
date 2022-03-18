@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
 			options.push(fileName);
 		});
 		quickPick.items = options.map(label => ({
-			label: label.match(/^.*\\(.*)\..*$/)[1],
+			label: label.match(/^.*[\\\/](.*)\..*$/)[1],
 			description: label,
 			alwaysShow: Configuration.fuzzySearch()
 		}));
@@ -42,7 +42,7 @@ export function activate(context: vscode.ExtensionContext) {
 			quickPick.onDidChangeValue(selection => {
 				const fuzzysortItems = fuzzysort.go(selection, options);
 				quickPick.items = fuzzysortItems.map(item => ({
-					label: item.target.match(/^.*\\(.*)\..*$/)[1],
+					label: item.target.match(/^.*[\\\/](.*)\..*$/)[1],
 					description: item.target,
 					alwaysShow: true
 				}));
