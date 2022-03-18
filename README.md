@@ -17,6 +17,7 @@ Use the Command Palette and search for the command **Search Open Editors**
 ## Setup
 
 You must be running an insiders build of VSCode.  
+Run the command `npx vscode-dts dev` to get the latest version of the proposed API.
 Package the VSIX and install by running the command `vsce package`
 
 - Install VSCE with `npm install -g vsce`
