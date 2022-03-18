@@ -2,7 +2,7 @@
   "name": "open-editor-search",
   "displayName": "Open Editor Search",
   "description": "Search Open Editors",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "RobertOstermann",
   "icon": "images/logo.png",
   "engines": {
@@ -41,7 +41,7 @@
       "properties": {
         "open-editor-search.fuzzySearch": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Should the quick pick search use fuzzy search instead of VSCode's default search."
         }
       }

@@ -16,7 +16,7 @@ Search through open editors with an input search bar.
 
 | Name                             | Description                                                                       | Default |
 | -------------------------------- | --------------------------------------------------------------------------------- | ------- |
-| `open-editor-search.fuzzySearch` | Should the quick pick search use fuzzy search instead of VSCode's default search. | `true`  |
+| `open-editor-search.fuzzySearch` | Should the quick pick search use fuzzy search instead of VSCode's default search. | `false` |
 
 ## Known Issues
 
