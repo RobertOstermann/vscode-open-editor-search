@@ -11,14 +11,17 @@ export function activate(context: vscode.ExtensionContext) {
 		// Find all editors
 		const editors = new Set<string>();
 		let activeEditor = vscode.window.activeTextEditor;
-		let currentEditor = vscode.window.activeTextEditor;
 
+		const currentEditorName = activeEditor?.document ?? "PREVIEW";
+		let activeEditorName = activeEditor?.document ?? "PREVIEW";
 		do {
-			editors.add(activeEditor.document.fileName);
+			if (activeEditor?.document) {
+				editors.add(activeEditor.document.fileName);
+			}
 			await vscode.commands.executeCommand("workbench.action.nextEditor");
 			activeEditor = vscode.window.activeTextEditor;
-			if (!currentEditor) currentEditor = activeEditor;
-		} while (activeEditor.document.fileName !== currentEditor.document.fileName);
+			activeEditorName = activeEditor?.document ?? "PREVIEW";
+		} while (activeEditorName !== currentEditorName);
 
 		// Create a quick pick window.
 		const quickPick = vscode.window.createQuickPick();
@@ -32,6 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
 			options.push(fileName);
 		});
 		quickPick.items = options.map(label => ({
+			// eslint-disable-next-line no-useless-escape
 			label: label.match(/^.*[\\\/](.*)\..*$/)[1],
 			description: label,
 			alwaysShow: Configuration.fuzzySearch()
@@ -42,6 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
 			quickPick.onDidChangeValue(selection => {
 				const fuzzysortItems = fuzzysort.go(selection, options);
 				quickPick.items = fuzzysortItems.map(item => ({
+					// eslint-disable-next-line no-useless-escape
 					label: item.target.match(/^.*[\\\/](.*)\..*$/)[1],
 					description: item.target,
 					alwaysShow: true
@@ -55,13 +60,8 @@ export function activate(context: vscode.ExtensionContext) {
 		// Editor is selected.
 		quickPick.onDidChangeSelection(async (selection) => {
 			if (selection[0]) {
-				const fileName = selection[0].description;
-				// vscode.commands.executeCommand("workbench.action.quickOpen", "FirstEditor.txt");
-				let activeEditor = vscode.window.activeTextEditor;
-				while (activeEditor.document.fileName !== fileName) {
-					await vscode.commands.executeCommand("workbench.action.nextEditor");
-					activeEditor = vscode.window.activeTextEditor;
-				}
+				const uri = vscode.Uri.file(selection[0].description);
+				await vscode.commands.executeCommand("vscode.open", uri);
 			}
 			quickPick.hide();
 		});
