@@ -50,16 +50,9 @@ export function activate(context: vscode.ExtensionContext) {
 		// Editor is selected.
 		quickPick.onDidChangeSelection(async (selection) => {
 			if (selection[0]) {
-				let complete = false;
-				while (!complete) {
-					vscode.window.tabGroups.groups.map(group => {
-						group.tabs.map(tab => {
-							if (tab.label === selection[0].label && tab.isActive) complete = true;
-						});
-					});
-					if (!complete) await vscode.commands.executeCommand("workbench.action.nextEditor");
-				}
+				await vscode.commands.executeCommand("workbench.action.quickOpen", `edt mru ${selection[0].label}`);
 			}
+
 			quickPick.hide();
 		});
 		quickPick.onDidHide(() => quickPick.dispose());

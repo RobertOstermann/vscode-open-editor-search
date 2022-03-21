@@ -44,6 +44,8 @@ Open the command palette and type `Configure Runtime Arguments` to enable propos
 This extension currently cycles through each editor to determine the open editors.  
 VSCode does not currently provide an API to determine which editors are open.
 
+Having multiple tabs open with the same label will cause issues.
+
 ## Credits / Links
 
 - [VSCode's Extension Samples](https://github.com/microsoft/vscode-extension-samples/tree/master/decorator-sample)
